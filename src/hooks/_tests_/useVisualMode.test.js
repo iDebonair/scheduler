@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act, waitForNextUpdate } from "@testing-library/react-hooks";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -15,8 +15,12 @@ test("useVisualMode should return to previous mode", () => {
   act(() => result.current.transition(THIRD));
   expect(result.current.mode).toBe(THIRD);
 
+  //act(() => result.current.back());
+
   act(() => result.current.back());
   expect(result.current.mode).toBe(SECOND);
+
+  //act(() => result.current.back());
 
   act(() => result.current.back());
   expect(result.current.mode).toBe(FIRST);
